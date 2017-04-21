@@ -1,0 +1,272 @@
+---
+title: "MSI analysis update"
+output: github_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set( fig.width=14, fig.height=7)
+
+
+
+library(readxl)
+library(dplyr)
+library(reshape2)
+library(moonBook)
+library(simPH)
+library(survminer)
+library(survival)
+library(knitr)
+ load("L:/Michael/_R_code/MSI/raw.Rda")
+load("L:/Michael/_R_code/MSI/MSI_data.Rda")
+black <- subset(MSI_data, MSI_data$Race_V=="Black")
+white <- subset(MSI_data, MSI_data$Race_V=="White")
+
+
+```
+
+## Table S1. Clinicopathological and molecular features by exclusion status  
+
+* Included patients had a higher proportion of rectal cancer  
+* Excluded patients had slightly more proximal and distal    
+* A larger proportion of excluded patients came from 1991-2000 decade of diagnosis  
+(follow up months should differ because missing or incomplete f/u is a condition for exclusion)
+
+```{r raw, echo=FALSE, comment="", results = "asis", fig.width = 12}
+ts1 <- mytable(final_exclude~Race_V+ AGE_MB+Sex_V+Location_MB+T_MB+N_MB+M_V+AJCC.stage+p53mutated+ MSI_Status_V+decade+ event+Survival_V, data=raw)
+myhtml(ts1)
+
+```
+
+## Table 1. Clinicopathological and molecular features by race  
+
+
+Race  |  Higher proportion                                               |  Lower proportion
+------|------------------------------------------------------------------|----------------------
+Blacks| Women, proximal, early or mid stages,MSI-L, decade dx *recent*            |  Deaths from cancer, rectal cancers
+Whites| Men, stages IV and I, MSS, decade dx *oldest*, deaths from cancer|  MSI-H & MSI-L
+              
+```{r MSI_Data, echo=FALSE, comment="", results = "asis",fig.width = 12}
+t1 <- mytable(Race_V~ AGE_MB+Sex_V+Location_MB+T_MB+N_MB+M_V+AJCC.stage+p53mutated+MSI_Status_V+decade+ event+Survival_V, data=MSI_data)
+myhtml(t1)
+
+```
+
+## Table 2a. Does MSI influence association within race?  
+
+Race    |   Observation
+--------|-------------------------------------------------------------------------------
+Blacks  | MSI-L are older 
+Whites  | MSI-H and MSI-L are majority proximal, P53 mutations in majority of MIS-L, MSS
+```{r MSIa, echo=FALSE, comment="", results = "asis"}
+t2a <- mytable(Race_V+MSI_Status_V~ AGE_MB+Sex_V+Location_MB+T_MB+N_MB+M_V+AJCC.stage+p53mutated+decade+ event+Survival_V, data=MSI_data)
+myhtml(t2a)
+
+```
+
+## Table 2b. Does race influence association within MSI?  
+
+MSS status   |   Observation
+-------------|-------------------------------------------------------------------------------------
+MSS          | More white males,more black proximals, less whites diagnosed in recent decade
+MSI-H        | Few late stage blacks, more metastasis in whites, half of whites diagnosed 1981-1990
+MSI-L        | borderline more p53 mutation in whites
+```{r MSIb, echo=FALSE, comment="", results = "asis"}
+t2a <- mytable(MSI_Status_V+Race_V~ AGE_MB+Sex_V+Location_MB+T_MB+N_MB+M_V+AJCC.stage+p53mutated+decade+ event+Survival_V, data=MSI_data)
+myhtml(t2a)
+
+```
+
+
+## Note that survival by race is a major issue in this study  
+
+`Figure 1` shows unadjusted KM survival with whites having a significantly quicker time to death from cancer than blacks
+```{r KM1, echo=FALSE, comment="", results = "asis"}
+fit <- survfit(SurvObj~Race_V, MSI_data)
+ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = TRUE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("Male", "Female"), # Change legend labels
+           risk.table.height = 0.25, # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           main='Figure 1- Survival by race: All UAB patients'
+)
+```
+
+## This is consistant across MSI Status  
+
+```{r KM2, echo=FALSE, comment="", results = "asis",fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~Race_V+MSI_Status_V, MSI_data)
+ggsurv<- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("Male", "Female"), # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by race: All UAB patients'
+)
+curv_facet <- ggsurv$plot + facet_wrap(~ MSI_Status_V)
+curv_facet
+```
+
+## Note survival by MSI by comparison
+```{r KM3, echo=FALSE, comment="", results = "asis"}
+fit <- survfit(SurvObj~MSI_Status_V, MSI_data)
+ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = TRUE, # Add p-value
+           risk.table = TRUE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("Male", "Female"), # Change legend labels
+           risk.table.height = 0.25, # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           main='Figure 1- Survival by MSI status: All UAB patients'
+)
+```
+
+## Then race stratified MSI survival  
+```{r KM4, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~MSI_Status_V+Race_V, MSI_data)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ Race_V)
+curv_facet1
+```
+## Note that there is no diffrence between MSI levels within race, but there is an effect of race within MSI. 
+The survival difference in MSI-L by race may be due to whites having poorer survival in general than blacks. Aside from having more deaths from cancer, more whites are late stage, with an old decade of diagnosis. In addition, whites who are MSI-L have the highest proportion of p53 mutation.  
+
+
+###Unadjusted association between survival and race across decade of disgnosis  
+Patients most recently diagnosed have the best survival  
+
+```{r KM5, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade, MSI_data)
+ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = TRUE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+
+```
+Does decade of diagnosis affect the relationship between race and death from cancer? 
+```{r KM6, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade+Race_V, MSI_data)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ decade)
+curv_facet1
+```
+what about MSI and decade?  
+Does decade of diagnosis affect the relationship between MSI and death from cancer? 
+```{r KM7, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade+MSI_Status_V, MSI_data)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ decade)
+curv_facet1
+```
+And in whites only?
+```{r KM8, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade+MSI_Status_V, white)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ decade)
+curv_facet1
+```
+```{r KM9, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade+MSI_Status_V, white)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ MSI_Status_V)
+curv_facet1
+```
+
+And in blacks only?
+```{r KM10, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade+MSI_Status_V, black)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ decade)
+curv_facet1
+```
+```{r KM11, echo=FALSE, comment="", results = "asis", fig.width = 12, fig.height = 6}
+fit <- survfit(SurvObj~decade+MSI_Status_V, black)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+           #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+           conf.int = FALSE, # Add confidence interval
+           pval = FALSE, # Add p-value
+           risk.table = FALSE, # Add risk table
+           risk.table.col = "strata", # Risk table color by groups
+           #legend.labs = c("MSS Black", "Female") # Change legend labels
+           risk.table.height = 0.25 # Useful to change when you have multiple groups
+           #ggtheme = theme_bw() # Change ggplot2 theme
+           #main='Figure 1- Survival by MSI status: All UAB patients'
+)
+curv_facet1 <- ggsurv$plot + facet_wrap(~ MSI_Status_V)
+curv_facet1
+```
