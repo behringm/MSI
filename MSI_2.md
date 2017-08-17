@@ -1,7 +1,7 @@
 MSI analysis update
 ================
 
-![](/Michael/_R_code/MSI//MSI_2_files/figure-markdown_github/FlowDiagram.png)
+![](/MSI/figure-markdown_github/FlowDiagram.png)
 
 Table S1. Clinicopathological and molecular features by exclusion status
 ------------------------------------------------------------------------
