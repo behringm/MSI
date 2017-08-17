@@ -1,7 +1,7 @@
 MSI analysis update
 ================
 
-![](/MSI/figure-markdown_github/FlowDiagram.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/FlowDiagram.png)
 
 Table S1. Clinicopathological and molecular features by exclusion status
 ------------------------------------------------------------------------
@@ -3380,22 +3380,22 @@ Survival\_V
 Note that survival by race is a major issue in this study
 ---------------------------------------------------------
 
-Figure 1 shows unadjusted KM survival with whites having a significantly quicker time to death from cancer than blacks ![](MSI_2_files/figure-markdown_github/KM1-1.png)
+Figure 1 shows unadjusted KM survival with whites having a significantly quicker time to death from cancer than blacks ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM1-1.png)
 
 Poorer survival in whites is consistant across MSI Status
 ---------------------------------------------------------
 
-![](MSI_2_files/figure-markdown_github/KM2-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM2-1.png)
 
 Note overall survival by MSI for comparison
 -------------------------------------------
 
-![](MSI_2_files/figure-markdown_github/KM3-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM3-1.png)
 
 Then race stratified MSI survival
 ---------------------------------
 
-![](MSI_2_files/figure-markdown_github/KM4-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM4-1.png)
 
 Note that there is no diffrence between MSI levels within race, but there is an effect of race within MSI.
 ----------------------------------------------------------------------------------------------------------
@@ -3406,12 +3406,12 @@ The survival difference in MSI-L by race may be due to whites having poorer surv
 
 Patients most recently diagnosed have the best survival
 
-![](MSI_2_files/figure-markdown_github/KM5-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM5-1.png)
 
-Does decade of diagnosis affect the relationship between race and death from cancer? ![](MSI_2_files/figure-markdown_github/KM6-1.png)![](MSI_2_files/figure-markdown_github/KM6-2.png) What about MSI and decade?
-Does decade of diagnosis affect the relationship between MSI and death from cancer? ![](MSI_2_files/figure-markdown_github/KM7-1.png)![](MSI_2_files/figure-markdown_github/KM7-2.png) And in whites only? ![](MSI_2_files/figure-markdown_github/KM8-1.png) ![](MSI_2_files/figure-markdown_github/KM9-1.png)
+Does decade of diagnosis affect the relationship between race and death from cancer? ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM6-1.png)![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM6-2.png) What about MSI and decade?
+Does decade of diagnosis affect the relationship between MSI and death from cancer? ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM7-1.png)![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM7-2.png) And in whites only? ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM8-1.png) ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM9-1.png)
 
-And in blacks only? ![](MSI_2_files/figure-markdown_github/KM10-1.png) ![](MSI_2_files/figure-markdown_github/KM11-1.png)
+And in blacks only? ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM10-1.png) ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM11-1.png)
 
 ### Final cox proportional model accounting for effect of decade of diagnosis and interaction term of race and MSI status
 
