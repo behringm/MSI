@@ -21,7 +21,7 @@ MSI analysis update
     -   [Hazards of cancer-related mortality in whites](#hazards-of-cancer-related-mortality-in-whites)
 -   [Analysis of p53 mutation,MSI, and race](#analysis-of-p53-mutationmsi-and-race)
 
-![](L:/Michael/_R_code/MSI/MSI_2_files/figure-markdown_github/FlowDiagram.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/FlowDiagram.png)
 
 Table S1. Clinicopathological and molecular features by exclusion status
 ========================================================================
@@ -3400,22 +3400,22 @@ Survival\_V
 Survival by race is a major issue in this study
 ===============================================
 
-Figure 1 shows unadjusted KM survival with whites having a significantly quicker time to death from cancer than blacks ![](MSI_2_files/figure-markdown_github/KM1-1.png)
+Figure 1 shows unadjusted KM survival with whites having a significantly quicker time to death from cancer than blacks ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM1-1.png)
 
 Poorer survival in whites is consistant across MSI groups
 ---------------------------------------------------------
 
-![](MSI_2_files/figure-markdown_github/KM2-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM2-1.png)
 
 Note overall survival by MSI for comparison
 -------------------------------------------
 
-![](MSI_2_files/figure-markdown_github/KM3-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM3-1.png)
 
 Then race stratified MSI survival
 ---------------------------------
 
-![](MSI_2_files/figure-markdown_github/KM4-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM4-1.png)
 
 There is no diffrence between MSI levels within race, but there is an effect of race within MSI groups.
 -------------------------------------------------------------------------------------------------------
@@ -3427,27 +3427,27 @@ Unadjusted association between survival and race across decade of diagnosis
 
 Patients most recently diagnosed have the best survival
 
-![](MSI_2_files/figure-markdown_github/KM5-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM5-1.png)
 
 Does decade of diagnosis affect the relationship between race and death from cancer?
 ====================================================================================
 
-![](MSI_2_files/figure-markdown_github/KM6-1.png)![](MSI_2_files/figure-markdown_github/KM6-2.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM6-2.png)
 
 Does decade of diagnosis affect the relationship between MSI and death from cancer?
 ===================================================================================
 
-![](MSI_2_files/figure-markdown_github/KM7-1.png)![](MSI_2_files/figure-markdown_github/KM7-2.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM7-2.png)
 
 In whites only
 --------------
 
-![](MSI_2_files/figure-markdown_github/KM8-1.png) ![](MSI_2_files/figure-markdown_github/KM9-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM9-1.png)
 
 In blacks only
 --------------
 
-![](MSI_2_files/figure-markdown_github/KM10-1.png) ![](MSI_2_files/figure-markdown_github/KM11-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM11-1.png)
 
 Final cox proportional models
 =============================
@@ -4479,8 +4479,8 @@ p53mutated
 </table>
 The effect of p53 mutation upon survival is stronger in MSS blacks
 
-![](MSI_2_files/figure-markdown_github/KM12-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM12-1.png)
 
 In MSS blacks, age is also a factor in p53-based survival
 
-![](MSI_2_files/figure-markdown_github/KM13-1.png)
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM13-1.png)
