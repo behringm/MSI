@@ -648,6 +648,7 @@ Survival\_V
 </td>
 </tr>
 </table>
+
 Table 1. Clinicopathological and molecular features by race
 ===========================================================
 
@@ -1226,6 +1227,7 @@ Survival\_V
 </td>
 </tr>
 </table>
+
 Table 2a. Does MSI influence association within race?
 =====================================================
 
@@ -2264,6 +2266,7 @@ Survival\_V
 </td>
 </tr>
 </table>
+
 Table 2b. Does race influence association within MSI?
 =====================================================
 
@@ -3397,6 +3400,7 @@ Survival\_V
 </td>
 </tr>
 </table>
+
 Survival by race is a major issue in this study
 ===============================================
 
@@ -3804,6 +3808,7 @@ coxph(formula = SurvObj ~ Race\_V + Sex\_V + MSI\_Status\_V + p53mutated +
 
 </tr>
 </table>
+
 From this, we can justify enough of an effect of race-by-MSI to stratify into whites and blacks
 
 Hazards of cancer-related mortality in blacks
@@ -4037,6 +4042,7 @@ Call: coxph(formula = SurvObj ~ Sex\_V + MSI\_Status\_V + p53mutated + AGE\_MB +
 </td>
 </tr>
 </table>
+
 Hazards of cancer-related mortality in whites
 ---------------------------------------------
 
@@ -4268,6 +4274,7 @@ Call: coxph(formula = SurvObj ~ Sex\_V + MSI\_Status\_V + p53mutated + AGE\_MB +
 </td>
 </tr>
 </table>
+
 Analysis of p53 mutation,MSI, and race
 ======================================
 
@@ -4347,6 +4354,7 @@ p53mutated
 </td>
 </tr>
 </table>
+
 This remains the case when we stratify by race
 
 <head>
