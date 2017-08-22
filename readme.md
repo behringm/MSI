@@ -3431,7 +3431,7 @@ Unadjusted association between survival and race across decade of diagnosis
 
 Patients most recently diagnosed have the best survival
 
-![](https://github.com/behringm/MSI/blob/figure-markdown_github/KM5-1.png )
+![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM5-1.png)
 
 Does decade of diagnosis affect the relationship between race and death from cancer?
 ====================================================================================
