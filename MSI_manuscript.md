@@ -15,8 +15,11 @@ August 24, 2017
 ============
 
 **Purpose:** Several studies have examined the prognostic value of microsatellite instability (MSI) low (MSI-L) phenotype in colorectal adenocarcinomas (CRCs), but none have specifically considered patient race/ethnicity. Thus, this study assessed the prognostic value of the MSI-L phenotype in African-American (AA) and non-Hispanic Whites (NHW) CRC patients separately.
+
 **Experimental Design:** CRC and corresponding normal tissues and human colon cancer (hCC) cell lines were assessed for p53 mutations and for expression and methylation status of O6-methylguanine-DNA methyltransferase (MGMT). MSI was assessed using five polymorphic microsatellite markers of Bethesda consensus panel (BAT25, BAT26, D2S123, D5S346, and D17S250). The phenotypes of microsatellite stable (MSS), MSI-L and MSI-high (MSI-H) were correlated with clinicopathologic features and p53 or MGMT status by use of the *x*<sup>2</sup> test, and with patient survival using univariate Kaplan-Meier analyses.
+
 **Results:** In general, the incidence of the MSI-L phenotype was higher in AA (41 of 225, 18%) compared to NHW (15 of 293, 5%) CRC patients; similarly, the incidence of MSI-H phenotype was higher in AA patients (28%) than NHW patients (23%); but the frequency of MSS phenotype was higher in NHW (72%) than in AA (54%) patients. However, in NHW patients, the presence of the MSI-L phenotype significantly correlated with a higher incidence of p53 mutations (88%), methylation or lower expression of MGMT, and tumors of poor differentiation (31%). Such associations with the MSI-L phenotype were not found in AA patients. There was a significant reduction in mRNA or protein levels of MGMT in hCC cells with MGMT gene promoter methylation compared to unmethylated hCC cells. Furthermore, after adjusting for confounding, NHW patients with CRCs exhibiting the MSI-L phenotype had significantly high hazard of cancer related death (HR 4.99, 95% C.I. 1.49-16.71, *p*-value =0.009).
+
 **Conclusions:** These findings suggest that CRC with MSI-L phenotype is associated with higher incidence of p53 mutations, methylation and lower expression of MGMT and short survival in NHW patients, but not in AA patients.
 
 **Statistical Methods**
