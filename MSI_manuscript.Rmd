@@ -1,0 +1,132 @@
+---
+title: "Prognostic Significance of Microsatellite Instability Low Phenotype Varies with Patient Race/Ethnicity in Colorectal Adenocarcinoma"
+date: "August 24, 2017"
+header-includes: 
+  -\usepackage{colortbl}
+  -\setlength{\parindent}{4em}
+  -\setlength{\parskip}{0em}
+output: 
+  github_document:
+    toc: true
+  html_document:
+    theme: spacelab
+    toc: true
+    
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set( fig.width=14)
+
+
+library(rmarkdown)
+library(readxl)
+library(dplyr)
+library(reshape2)
+library(moonBook)
+library(survminer)
+library(survival)
+library(knitr)
+library(xtable)
+library(ztable)
+ load("L:/Michael/_R_code/MSI/raw.Rda")
+load("L:/Michael/_R_code/MSI/MSI_data.Rda")
+black <- subset(MSI_data, MSI_data$Race_V=="Black")
+white <- subset(MSI_data, MSI_data$Race_V=="White")
+MSS_AA <- subset(black,black$MSI_Status_V == "MSS")
+
+```
+
+#**Abstract**  
+ **Purpose:** Several studies have examined the prognostic value of microsatellite instability (MSI) low (MSI-L) phenotype in colorectal adenocarcinomas (CRCs), but none have specifically considered patient race/ethnicity. Thus, this study assessed the prognostic value of the MSI-L phenotype in African-American (AA) and non-Hispanic Whites (NHW) CRC patients separately.  
+ **Experimental Design:** CRC and corresponding normal tissues and human colon cancer (hCC) cell lines were assessed for p53 mutations and for expression and methylation  status of O6-methylguanine-DNA methyltransferase (MGMT). MSI was assessed using five polymorphic microsatellite markers of Bethesda consensus panel (BAT25, BAT26, D2S123, D5S346, and D17S250). The phenotypes of microsatellite stable (MSS), MSI-L and MSI-high (MSI-H) were correlated with clinicopathologic features and p53 or MGMT status by use of the $x^{2}$ test, and with patient survival using univariate Kaplan-Meier analyses.  
+ **Results:** In general, the incidence of the MSI-L phenotype was higher in AA (41 of 225, 18%) compared to NHW (15 of 293, 5%) CRC patients; similarly, the incidence of MSI-H phenotype was higher in AA patients (28%) than NHW patients (23%); but the frequency of MSS phenotype was higher in NHW (72%) than in AA (54%) patients. However, in NHW patients, the presence of the MSI-L phenotype significantly correlated with a higher incidence of p53 mutations (88%), methylation or lower expression of MGMT, and tumors of poor differentiation (31%). Such associations with the MSI-L phenotype were not found in AA patients. There was a significant reduction in mRNA or protein levels of MGMT in hCC cells with MGMT gene promoter methylation compared to unmethylated hCC cells. Furthermore, after adjusting for confounding, NHW patients with CRCs exhibiting the MSI-L phenotype had significantly high hazard of cancer related death (HR 4.99, 95% C.I. 1.49-16.71, $p$-value =0.009).    
+ **Conclusions:** These findings suggest that CRC with MSI-L phenotype is associated with higher incidence of p53 mutations, methylation and lower expression of MGMT and short survival in NHW patients, but not in AA patients.  
+ 
+# **Statistical Methods**  
+**Data management for statistical analyses**  
+  Patients with less than one month of follow up after surgery were excluded from these analyses. Other exclusion criteria were previous or concurrent cancers, missing ethnicity, p53 measures and patients aged less than 40 years. Eleven (2%) AA and 14 (4%) NHW patients were lost to follow-up, therefore survival analyses were performed on the remaining 225 AA and 293 NHW patients. The time at risk was measured by calculating the number of months from date of surgery to time of event or date of last contact.  
+  
+**Statistical analyses**  
+   Chi-square tests were used to compare baseline characteristics in each ethnic group (67). These analyses were also used to examine univariate associations with covariates and potential confounders. The baseline characteristics included demographic variables (age and gender), pathologic variables (tumor location, size, histologic type, differentiation, and stage), and molecular status of p53, MSI and MGMT. Type I error rate of each test was controlled at less than 0.05.  All analyses were performed with R statistical software version 3.2.2 (ref needed).    
+   
+   Survival analysis was used to model time from date of surgery until death due to CRC. Those patients who died of any cause other than CRC and those who were alive at the end of the study were considered to be censored. Log-rank test and Kaplan-Meier analyses curves (69) were used to compare the MSI-L phenotype with the MSS phenotype for survival difference in each ethnic group. Type I error rate of each test was controlled at less than 0.05.  
+   
+   Besides the primary analysis determining the effect of the MSI-L phenotype described   above, secondary analyses were performed to consider covariates known to be potential confounders or independent risk factors for death. These included age, gender, tumor location, tumor stage, and p53 mutation status. For these analyses, Cox regression models (70) were used for the total patient population, and within each ethnic group. All models were stratified by decade of diagnosis, and met the assumptions of proportionality.  
+   
+#   **Results**  
+**Study cohort characteristics**  
+   Demographic and tumor characteristics for AA and NHW patients with CRCs are given in Table 1. AA patients were more likely to present with proximal tumors (55%) compared to NHW patients (40%)  ($x^2$, $p$>0.001). On the other hand, NHW patients were more likely to present with rectal tumors (27%) compared to AA patients (11%). In addition, there were significant differences by race/ethnicity with regard to gender ($x^2$, $p$>0.001), depth of tumor invasion ($x^2$, $p$=0.03),  tumor stage ($x^2$, $p$=0.03), tumor distant metastasis ($x^2$, $p$=0.015). AA patients had a more recent decade of diagnosis than NHWs ($x^2$, $p$>0.001); however, there was no significant difference in age at diagnosis ($x^2$, $p$=1), nodal metastasis ($x^2$, $p$=0.18), and follow up time ($x^2$, $p$=0.23) (Table 1).  
+   
+   ```{r MSI_Data, echo=FALSE, comment="", results="asis"}
+t1 <- mytable(Race_V~ AGE_MB+Sex_V+Location_MB+Differentiation_coded_V+T_MB+N_MB+M_V+AJCC.stage+p53mutated+MSI_Status_V+decade+ event+Survival_V, data=MSI_data)
+myhtml(t1)
+
+```  
+   
+**Frequency of MSI-L phenotype and its correlation with clinicopathological features**  
+   Analysis of MSI in CRCs revealed a lower frequency of MSI-L phenotype compared to MSS or MSI-H phenotypes in both racial groups; MSI-L phenotype was more predominant in AA patients (41 of 225, 18%) compared to NHW patients (15 of 293, 5%). Table 2 shows the correlation of MSI status by race/ethnicity along with clinicopathologic  characteristics and other molecular features of the tumors. In NHW patients, a higher incidence of MSI-L phenotype significantly associated with tumors located in the proximal colon (9 of 15, 64%, $x^2$, $p$=0.024). In contrast, more MSI-L tumors were significantly associated with younger age (27 of 41, 66%, $x^2$, $p$=0.016) in AA patients.   
+
+```{r MSIa, echo=FALSE, comment="", results = "asis"}
+t2a <- mytable(Race_V+MSI_Status_V~ AGE_MB+Sex_V+Location_MB+T_MB+N_MB+M_V+AJCC.stage+p53mutated+decade+ event+Survival_V, data=MSI_data)
+myhtml(t2a)
+```  
+**Correlation between MSI-L phenotype and p53 mutations**  
+  The occurrence of all p53 mutations were similar for AA (59%) and NHW patients (57%) (Table 1); these mutations were clustered in exons 4 through 8 (Table 4). As shown in Table 2, in AAs, the CRCs that demonstrated MSI-L or MSS phenotypes had higher (yet not significant) proportion of p53 missense mutations (25 of 41; 61%, or  (76 of 122; 62%, respectively) compared to those with MSI-H phenotype (31 of 62; 50%), ($x^2$, $p$=0.263). Similarly, in NHW patients, the MSI-L or MSS phenotypes exhibited a signifcantly higher frequency of p53 mutations (13 of 15, 87%, or 129 of 212 (61%), respectively compared to those with the MSI-H phenotype (25 of 66, 38%) ($x^2$, $p$>0.001) (Table 2). Differential p53 mutational spectra at different structural and functional regions were observed among AA and NHW racial groups in relation to the MSI-L phenotype (Table 3&4). In NHW patients, most of these mutations were the disruptive type, clustered in the L3 domain, H2 helix or S10 β sheet (Table 3), which are structural motifs of p53 with DNA-binding function and mutations are considered to be lethal and may contribute to poor patient survival. In relation to MSI-L phenotype, disruptive mutations in the S10 β sheet domain (1 of 9, 11%), evolutionary conserved region (5 of 13, 56%), DNA contact region (3 of 9, 33%) and in exon 6, 7 or 8 (numbers?) of p53 were high in NHW patients; lower frequencies of disruptive mutations in these regions were found in AA patients with the MSI-L phenotype. Point mutations leading to a high degree of disruption and truncation of the p53 protein were 69% (9 of 13) in NHW patients compared to 27% (7 of 26) in AA patients with the MSI-L phenotype. In advanced stage CRCs  with MSI-L phenotype, the point mutations at different structural and functional regions of the p53 gene were higher in NHW patients (8 of 13, 62%) compared to AAs (13 of 26, 50%) (Table 3&4). Thus, the association between p53 mutation and MSI-L phenotypes differed between the racial groups. Of 20 CRCs with the MSI-L phenotype in NHW patients, 15 (75%) had mutations of which 9 (45%) were disruptive type. In contrast, of 49 CRCs with MSI-L phenotype in AA patients 26 (53%) had mutations of which only 7 (14%) were of disruptive type.  
+  **Survival analyses **  
+   Univariate Kaplan-Meier survival analyses based on race/ethnicity showed that CRCs with p53 mutations were associated with short overall survival compared to those with wild-type p53 in both AA patients only (log-rank, $p$=0.006; data not shown). The MSI-L phenotype was not significantly associated with poor survival in NHW patients (log-rank, $p$=0.52) (below, right). In contrast, MSI-L phenotype was associated with better survival in AA patients (log-rank, $p$=0.081) (Figure below, left) compared to MSS phenotype.  
+   
+   ```{r KM1, echo=FALSE, comment="", results = "asis",fig.width = 12}
+   fit <- survfit(SurvObj~MSI_Status_V+Race_V, MSI_data)
+ggsurv <- ggsurvplot(fit,  size = 1,  # change line size
+                     #palette = c("#E7B800", "#2E9FDF"), # custom color palettes
+                     conf.int = FALSE, # Add confidence interval
+                     pval = FALSE, # Add p-value
+                     risk.table = TRUE, # Add risk table
+                     risk.table.col = "strata", # Risk table color by groups
+                     #legend.labs = c("Male", "Female"), # Change legend labels
+                     risk.table.height = 0.25 # Useful to change when you have multiple groups
+                     #ggtheme = theme_bw() # Change ggplot2 theme
+                     #main='Figure XX - Survival by race: UAB patients 2001-2007'
+)
+
+
+curv_facet1 <- ggsurv$plot + facet_wrap(~Race_V)
+curv_facet1
+```  
+   
+   The independent prognostic significance of the MSI-L phenotype for CRC-specific survival based on race/ethnicity was evaluated using a Cox regression model. The multivariate survival analyses confirmed the independent effect of the MSI-L phenotype on CRC-specific survival only in NHW patients (Table below). NHW patients with the MSI-L phenotype were 5 times (hazard ratio [HR] =4.99; 95% confidence interval [95% CI], 1.49-16.71) more likely to die of CRC compared with NHW patients with the MSS phenotype. In addition, any p53 mutation was associated with a significantly increased hazard of death relative to wild-type (hazard ratio [HR] =1.46; 95% confidence interval [95% CI], 1.06-2.01).  
+   
+#All patients, adjusted final survival model
+   
+   ```{r cph1, echo=FALSE, comment="", results="asis"}
+model_final <- coxph(SurvObj~Race_V+Sex_V+MSI_Status_V+p53mutated+AGE_MB+Location_MB+AJCC.stage+strata(decade)+Race_V*MSI_Status_V, data = MSI_data, method="breslow")
+print(ztable(model_final),type = "html")
+```  
+Since the survival effect of MSI was modeified by race, we stratified analysis to create two adjusted models, one for AA and one for NHW. After adjusting for confounders in AA patients, p53 was found to be associated with earlier death from cancer (hazard ratio [HR] =1.91; 95% confidence interval [95% CI], 1.01-3.60). Interestingly, and opposite from NHWs, both MSS and MSI-H were found to have a higher hazard of death relative to MSI-L (MSI-H hazard ratio [HR] =3.02; 95% confidence interval [95% CI], 1.01-9.07).In NHW-only model, the survival effect of MSI-L was somewhat attenuated (MSI-H hazard ratio [HR] =2.03; 95% confidence interval [95% CI], 0.99-4.19). Our data suggest, tumor stage and age to be independent prognostic indicators in both NHW and AA patients.
+
+#AA patients only, adjusted final survival model
+
+```{r cphb, echo=FALSE, comment="", results="asis"}
+black$MSI_Status_V <- relevel(black$MSI_Status_V, ref="MSI-L")
+model_b <- coxph(SurvObj~Sex_V+MSI_Status_V+p53mutated+AGE_MB+AJCC.stage+strata(decade), data = black, method="breslow")
+print(ztable(model_b),type = "html")
+```
+
+#NHW patients only, adjusted final survival model
+
+```{r cphw, echo=FALSE, comment="", results="asis"}
+model_w <- coxph(SurvObj~Sex_V+MSI_Status_V+p53mutated+AGE_MB+AJCC.stage+strata(decade), data = white, method="breslow")
+print(ztable(model_w),type = "html")
+```
+
+  
+
+
+  
+
+
+
+
+
+
+
+
