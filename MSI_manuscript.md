@@ -640,6 +640,7 @@ Survival\_V
 </td>
 </tr>
 </table>
+
 **Frequency of MSI-L phenotype and its correlation with clinicopathological features**
 
 Analysis of MSI in CRCs revealed a lower frequency of MSI-L phenotype compared to MSS or MSI-H phenotypes in both racial groups; MSI-L phenotype was more predominant in AA patients (41 of 225, 18%) compared to NHW patients (15 of 293, 5%). Table 2 shows the correlation of MSI status by race/ethnicity along with clinicopathologic characteristics and other molecular features of the tumors. In NHW patients, a higher incidence of MSI-L phenotype significantly associated with tumors located in the proximal colon (9 of 15, 64%, *x*<sup>2</sup>, *p*=0.024). In contrast, more MSI-L tumors were significantly associated with younger age (27 of 41, 66%, *x*<sup>2</sup>, *p*=0.016) in AA patients.
