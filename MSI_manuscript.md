@@ -3201,6 +3201,7 @@ III
 </table>
 
 **Survival analyses**
+
 Univariate Kaplan-Meier survival analyses based on race/ethnicity showed that CRCs with p53 mutations were associated with short overall survival compared to those with wild-type p53 in both AA patients only (log-rank, *p*=0.006; data not shown). The MSI-L phenotype was not significantly associated with poor survival in NHW patients (log-rank, *p*=0.52) (below, right). In contrast, MSI-L phenotype was associated with better survival in AA patients (log-rank, *p*=0.081) (Figure below, left) compared to MSS phenotype.
 
 ![](https://github.com/behringm/MSI/blob/master/figure-markdown_github/KM1-1M.png)
